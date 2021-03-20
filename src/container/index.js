@@ -7,7 +7,11 @@ const HomePage = () => {
   const makeAPICall = async () => {
     const res = await axios.get(process.env.REACT_APP_API_ENDPOINT);
     if (res.status === 200) {
-      await setAPIState(`Successfully called the API ${Math.random()}`);
+      await setAPIState(
+        `Successfully called the API ${parseFloat(Math.random()).toFixed(
+          2
+        )}  got ${Object.keys(res.data).length}`
+      );
     }
   };
   return (
@@ -15,7 +19,7 @@ const HomePage = () => {
       <div className="col-4" />
       <div className="col-md-3">
         <button
-        type="button"
+          type="button"
           onClick={() => makeAPICall()}
           className="btn btn-outline-primary ml-4"
         >
