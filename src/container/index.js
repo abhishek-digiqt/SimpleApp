@@ -4,14 +4,18 @@ import axios from "axios";
 const HomePage = () => {
   const [apiState, setAPIState] = React.useState("Initial API State");
 
-  const makeAPICall = () => {
-    console.log("API Call");
+  const makeAPICall = async () => {
+    const res = await axios.get(process.env.REACT_APP_API_ENDPOINT);
+    if (res.status === 200) {
+      await setAPIState(`Successfully called the API ${Math.random()}`);
+    }
   };
   return (
     <div className="row">
       <div className="col-4" />
       <div className="col-md-3">
         <button
+        type="button"
           onClick={() => makeAPICall()}
           className="btn btn-outline-primary ml-4"
         >
